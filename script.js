@@ -20,6 +20,10 @@ function writePassword() {
     // Length of the password
     var userChoice = window.prompt("Enter length: (min length 8, Max length 128)");
     length_Choice = userChoice
+    if (!(8 <= length_Choice && length_Choice <= 128)) {
+      return;
+    }
+
     var userChoice = window.prompt("Include Lowercase Letters?:(Y/N)");
     Lowercase_Choice = userChoice
     var userChoice = window.prompt("Include Uppercase Letters?:(Y/N)");
@@ -30,7 +34,7 @@ function writePassword() {
     SpecialChar_Choice = userChoice  
 
     
-    if (8 <= length_Choice <= 128) {
+    if (8 <= length_Choice && length_Choice <= 128) {
       for (var i = 0; i < length_Choice; i++) {
         
         // Include Lowercase
@@ -65,8 +69,6 @@ function writePassword() {
           symbol();
         }  
       } 
-    } else {
-      return;
     }
   };
   

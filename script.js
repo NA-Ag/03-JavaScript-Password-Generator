@@ -21,13 +21,21 @@ function writePassword() {
     var userChoice = window.prompt("Enter length: (min length 8, Max length 128)");
     length_Choice = userChoice
 
+    var userChoice = window.prompt("Include Lowercase Letters?:(Y/N)");
+    Lowercase_Choice = userChoice
+    var userChoice = window.prompt("Include Uppercase Letters?:(Y/N)");
+    Uppercase_Choice = userChoice
+    var userChoice = window.prompt("Include Numbers?:(Y/N)");
+    Numbers_Choice = userChoice  
+    var userChoice = window.prompt("Include Special Characters?:(Y/N)");
+    SpecialChar_Choice = userChoice  
+    
+    
     if (8 <= length_Choice <= 128) {
       for (var i = 0; i < length_Choice; i++) {
         
         // Include Lowercase
-        var userChoice = window.prompt("Include Lowercase Letters?:(Y/N)");
         if (userChoice.upperCase === "Y") {
-          Lowercase_Choice = userChoice
           function lowerCase() {
             return Possible_Characters.Lower_Case[Math.floor(Math.random() * Possible_Characters.Lower_Case.length)];
           };
@@ -35,9 +43,7 @@ function writePassword() {
         }
         
         // Include Uppercase
-        var userChoice = window.prompt("Include Uppercase Letters?:(Y/N)");
         if (userChoice.upperCase === "Y") {
-          Uppercase_Choice = userChoice
           function upperCase() {
             return Possible_Characters.Upper_Case[Math.floor(Math.random() * Possible_Characters.Upper_Case.length)];
           };
@@ -45,9 +51,7 @@ function writePassword() {
         }
         
         // Include Numbers
-        var userChoice = window.prompt("Include Numbers?:(Y/N)");
         if (userChoice.upperCase === "Y") {
-          Numbers_Choice = userChoice  
           function number() {
             return Possible_Characters.number[Math.floor(Math.random() * keys.number.length)];
           };
@@ -55,9 +59,7 @@ function writePassword() {
         }  
         
         // Include Special characters
-        var userChoice = window.prompt("Include Special Characters?:(Y/N)");
         if (userChoice.upperCase === "Y") {
-          SpecialChar_Choice = userChoice  
           function symbol() {
             return Possible_Characters.symbol[Math.floor(Math.random() * keys.symbol.length)];
           };

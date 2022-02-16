@@ -1,85 +1,56 @@
-// Assignment Code
-var generateBtn = document.querySelector("#generate");
-
-const random = Math.random
-
-const Possible_Characters = {
-  Upper_Case: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-  Lower_Case: "abcdefghijklmnopqrstuvwxyz",
-  Number: "0123456789",
-  Symbol: "!@#$%^&*()_+~\\`|}{[]:;?><,./-="
+const options = {
+  letter: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  number: "0123456789",
+  symbol: " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
 }
 
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
 
-  // Password Parameters taken here
-  function generatePassword() {
+function randomCharacters(characters) {
+  const randomIndex = Math.floor(Math.random()*characters.length);
+  const items = characters[randomIndex];
+  return items;
+}
 
-    // Length of the password
-    var userChoice = window.prompt("Enter length: (min length 8, Max length 128)");
-    length_Choice = userChoice
-    if (!(8 <= length_Choice && length_Choice <= 128)) {
-      return;
+function shuffleArray(array) {
+  let currentIndex = array.length;
+  while (0 !== currentIndex) {
+    let randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    let temporary = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporary;
+  }
+  return array;
+}
+
+function generatePassword() {
+  document.body.innerHTML = document.body.innerHTML.replace(password, "Your Secure Password");
+  let passwordArray = [];
+  let numberOfLetters = window.prompt("How many letters do you want?: ");
+  let numberOfNumbers = window.prompt("How many numbers do you want?: ");
+  let numberOfSymbols = window.prompt("How many special characters do you want?: ");
+  if (0 < numberOfLetters) 
+    for (let i = 0; i < numberOfLetters; i++) {
+      let array = options.letter;
+      let result = randomCharacters(array);
+      passwordArray.push(result)
     }
-
-    var userChoice = window.prompt("Include Lowercase Letters?:(Y/N)");
-    Lowercase_Choice = userChoice
-    var userChoice = window.prompt("Include Uppercase Letters?:(Y/N)");
-    Uppercase_Choice = userChoice
-    var userChoice = window.prompt("Include Numbers?:(Y/N)");
-    Numbers_Choice = userChoice  
-    var userChoice = window.prompt("Include Special Characters?:(Y/N)");
-    SpecialChar_Choice = userChoice  
-
-    
-    if (8 <= length_Choice && length_Choice <= 128) {
-      for (var i = 0; i < length_Choice; i++) {
-        
-        // Include Lowercase
-        if (userChoice.upperCase === "Y") {
-          function lowerCase() {
-            return Possible_Characters.Lower_Case[Math.floor(Math.random() * Possible_Characters.Lower_Case.length)];
-          };
-          lowerCase();
-        }
-        
-        // Include Uppercase
-        if (userChoice.upperCase === "Y") {
-          function upperCase() {
-            return Possible_Characters.Upper_Case[Math.floor(Math.random() * Possible_Characters.Upper_Case.length)];
-          };
-          upperCase();
-        }
-        
-        // Include Numbers
-        if (userChoice.upperCase === "Y") {
-          function number() {
-            return Possible_Characters.number[Math.floor(Math.random() * keys.number.length)];
-          };
-          number();
-        }  
-        
-        // Include Special characters
-        if (userChoice.upperCase === "Y") {
-          function symbol() {
-            return Possible_Characters.symbol[Math.floor(Math.random() * keys.symbol.length)];
-          };
-          symbol();
-        }  
-      } 
-    }
-  };
   
-  generatePassword();
-
+  if (0 < numberOfNumbers)
+  for (let i = 0; i < numberOfNumbers; i++) {
+    let array = options.number;
+    let result = randomCharacters(array);
+    passwordArray.push(result) 
+  }
   
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
-};
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword());
+  if (0 < numberOfSymbols)
+  for (let i = 0; i < numberOfSymbols; i++) {
+    let array = options.symbol;
+    let result = randomCharacters(array);
+    passwordArray.push(result)
+  }
+  passwordShuffled = shuffleArray(passwordArray);
+  password = passwordArray.join("");
+  let textAreaInHTML = document.getElementById('password');
+  textAreaInHTML.value = password;
+}

@@ -1,16 +1,18 @@
+// Set the possible characters in a key-value list for ease of access.
 const options = {
   letter: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
   number: "0123456789",
   symbol: " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
 }
 
-
+// Random number generator will provide an index to find a specific character.
 function randomCharacters(characters) {
   const randomIndex = Math.floor(Math.random()*characters.length);
   const items = characters[randomIndex];
   return items;
 }
 
+// Function will shuffle the array around to make the password random and thus more secure. 
 function shuffleArray(array) {
   let currentIndex = array.length;
   while (0 !== currentIndex) {
@@ -23,6 +25,7 @@ function shuffleArray(array) {
   return array;
 }
 
+// Password function will validate all the user inputs to generate a desired output. 
 function generatePassword() {
   document.body.innerHTML = document.body.innerHTML.replace(password, "Your Secure Password");
   let passwordArray = [];
